@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Grand Roulette &mdash; live-dealer European roulette in the browser</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A grand European roulette table with a physically simulated wheel and ball, a lip-synced human dealer who talks to the table, three AI players and a last-20 history board. Plain HTML5 Canvas and Web Audio.">
+<meta property="og:title" content="Grand Roulette"><meta property="og:image" content="screenshots/hero.jpg">
+<style>
+  :root { --gold: #e9c250; --paper: #f3e9c8; --muted: #b7a77a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(ellipse at 50% 0%, #2a1a1f 0%, #07060a 60%); color: var(--paper); font-family: "Segoe UI", system-ui, sans-serif; line-height: 1.55; }
+  a { color: var(--gold); }
+  header { text-align: center; padding: 56px 20px 24px; }
+  header img.logo { width: min(760px, 92vw); filter: drop-shadow(0 0 30px rgba(255,200,90,.35)); }
+  header p.tag { font-family: Georgia, serif; letter-spacing: 5px; color: var(--muted); margin: 14px 0 28px; font-size: 14px; text-transform: uppercase; }
+  .cta { display: inline-block; padding: 16px 40px; border-radius: 14px; font-weight: 800; letter-spacing: 2px; color: #2a1a00; text-decoration: none; background: linear-gradient(180deg, #fff3bd, #e9c250 35%, #b8860b 80%); box-shadow: 0 6px 0 #3a2a00, 0 14px 30px rgba(0,0,0,.6); }
+  .hero { display: block; width: min(1200px, 94vw); margin: 40px auto 0; border-radius: 14px; border: 2px solid #4a3b14; box-shadow: 0 30px 80px rgba(0,0,0,.8); }
+  main { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px; }
+  h2 { font-family: Georgia, serif; color: var(--gold); letter-spacing: 3px; font-size: 24px; margin: 56px 0 18px; border-bottom: 1px solid #3a3012; padding-bottom: 10px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: rgba(255,255,255,.03); border: 1px solid #3a3012; border-radius: 12px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 8px; color: #ffe9a8; font-size: 17px; } .card p { margin: 0; color: #d9ccaa; font-size: 15px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 22px; }
+  figure { margin: 0; } figure img { width: 100%; border-radius: 10px; border: 1px solid #3a3012; box-shadow: 0 12px 30px rgba(0,0,0,.6); } figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; } td, th { border-bottom: 1px solid #2a2410; padding: 8px 10px; text-align: left; } th { color: var(--gold); }
+  footer { text-align: center; color: #7d6a3a; font-size: 13px; padding: 30px 20px 60px; }
+  code { background: #15131c; padding: 2px 6px; border-radius: 4px; color: #ffe9a8; }
+</style>
+</head>
+<body>
+<header>
+  <img class="logo" src="../assets/logo.png" alt="GRAND ROULETTE">
+  <p class="tag">European single zero &middot; live dealer &middot; four seats &middot; last-20 board</p>
+  <a class="cta" href="../index.html">TAKE A SEAT</a>
+  <img class="hero" src="screenshots/hero.jpg" alt="The table: dealer panel, wheel, layout with chips, seats and history board">
+</header>
+<main>
+  <h2>What it is</h2>
+  <p>A grand European roulette table in plain HTML5 Canvas, Web Audio and vanilla JavaScript: a big wheel in perspective whose
+    ball is physically simulated on the track, down the cone past the deflectors and across the frets; a real human dealer in a
+    live-stream panel who speaks every call with generated voice and lip-synced video; three regulars who bet alongside you; and a
+    board that tracks the last twenty numbers.</p>
+  <h2>Features</h2>
+  <div class="grid">
+    <div class="card"><h3>The wheel</h3><p>Rotor and ball spin in opposite directions; the ball decays with friction, drops, strikes the deflectors, hops over the frets with decaying bounces and settles in the predetermined pocket. The camera pushes in for the drop.</p></div>
+    <div class="card"><h3>The dealer</h3><p>Generated portrait and voice, lip-synced talking-head clips for the table phrases, every number called with its colour, winners congratulated by name, captions under the video.</p></div>
+    <div class="card"><h3>The table</h3><p>Full European layout with 157 bet spots: straights, splits, streets, corners, six lines, trios, first four, columns, dozens and the even-money bets, snapping to the nearest spot. Limits 1–500 inside, 2,500 outside.</p></div>
+    <div class="card"><h3>The regulars</h3><p>Sophia plays the outside, Marcus chases numbers, Elena mixes it up. They place chips during the window, keep bankrolls and rebuy when broke.</p></div>
+    <div class="card"><h3>The board</h3><p>Last twenty numbers as coloured tokens, newest first, with red/black/zero, odd/even and hot-number counts, plus the betting countdown.</p></div>
+    <div class="card"><h3>Sound</h3><p>Salon murmur, the ball's roll rising and falling with speed, deflector clicks, fret hops, the settle rattle, chips, the no-more-bets chime and win fanfares, all synthesized live.</p></div>
+  </div>
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <figure><img src="screenshots/table.jpg" alt="Betting"><figcaption>Betting open: your chips and the regulars' chips on the layout.</figcaption></figure>
+    <figure><img src="screenshots/spin.jpg" alt="Ball on the track"><figcaption>No more bets: the ball runs the outer track.</figcaption></figure>
+    <figure><img src="screenshots/drop.jpg" alt="Ball dropping"><figcaption>The camera pushes in as the ball drops and hops.</figcaption></figure>
+    <figure><img src="screenshots/result.jpg" alt="Result"><figcaption>Seventeen, black: the dealer calls it and places the marker.</figcaption></figure>
+    <figure><img src="screenshots/payout.jpg" alt="Payout"><figcaption>Losing chips are swept, winners are paid and the board updates.</figcaption></figure>
+    <figure><img src="screenshots/help.jpg" alt="Help"><figcaption>Pays and rules.</figcaption></figure>
+  </div>
+  <h2>Controls</h2>
+  <table>
+    <tr><th>Action</th><th>Mouse</th><th>Keyboard</th></tr>
+    <tr><td>Choose a chip</td><td>chip tray</td><td><code>1</code>–<code>5</code></td></tr>
+    <tr><td>Place a bet / take it back</td><td>click a spot / right-click</td><td>&mdash;</td></tr>
+    <tr><td>Close bets and spin</td><td>SPIN</td><td><code>Space</code></td></tr>
+    <tr><td>Undo · Clear · Rebet · Double</td><td>buttons</td><td><code>U</code> · <code>C</code> · <code>R</code> · <code>D</code></td></tr>
+    <tr><td>Help · Mute</td><td>? · speaker</td><td><code>H</code> · <code>M</code></td></tr>
+  </table>
+  <h2>Run it yourself</h2>
+  <p>Serve the folder (<code>python -m http.server 8771</code> or <code>start.cmd</code> on Windows) and open <code>http://localhost:8771/</code>. The README covers configuration, the house-edge check and the headless screenshot tool.</p>
+</main>
+<footer>Unofficial recreation for entertainment only &middot; play money, no real wagering &middot; dealer portrait, voice and video generated for this project; all other sound synthesized at runtime.</footer>
+</body>
+</html>
